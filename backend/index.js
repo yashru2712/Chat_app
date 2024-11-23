@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import connectToDb from "./Db/connectToDb.js";
 import authRoutes from "./routes/auth.routes.js";
+import errorMiddleware from "./middleware/errormiddleware.js";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,8 @@ app.use(cookieParser());
 const port = process.env.port || 5000;
 
 app.use("/api/auth", authRoutes);
+
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   connectToDb();
