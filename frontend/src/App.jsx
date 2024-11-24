@@ -10,7 +10,13 @@ const Home = lazy(() => import("./Pages/Home"));
 const App = () => {
   return (
     <div className="w-screen h-screen  bg-cover bg-center">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="w-full h-full flex justify-center items-center text-4xl font-semibold">
+            Loading...
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />

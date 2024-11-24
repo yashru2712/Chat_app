@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Search } from "lucide-react";
+import Data from "../Data";
+import MessageList from "../Components/MessageList";
 
 const Home = () => {
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="w-screen h-screen overflow-hidden p-4">
       <div className="w-full h-full flex justify-between items-center gap-4">
@@ -28,17 +35,53 @@ const Home = () => {
             {/*user search ke liye*/}
 
             <div className="w-full bg-slate-200  boder border-white-2 rounded-lg px-4 py-3 ">
-              <form className="flex justify-between items-center">
+              <form
+                className="flex justify-between items-center"
+                onSubmit={(e) => handleSubmit}
+              >
                 <input
                   type="text"
                   placeholder="Search..."
                   className="font-semibold bg-slate-200 active:outline focus:outline-none overflow-hidden"
+                  value={input}
+                  onChange={(e) => {
+                    setInput(e.target.value);
+                  }}
                 />
                 <button type="submit" className="text-slate-800">
                   <Search />
                 </button>
               </form>
             </div>
+          </div>
+          <div className="w-full p-3">
+            <ul className="flex flex-col justify-between items-start">
+              {Data && Data.length > 0 ? (
+                Data.map((item) => (
+                  <MessageList
+                    key={item.id}
+                    lastMessage={item.lastMessage}
+                    userName={item.userName}
+                    time={item.time}
+                  />
+                ))
+              ) : (
+                <div className="flex justify-center items-center text-xl text-slate-600 font-semibold p-3">
+                  Say Hello to friend...
+                </div>
+              )}
+            </ul>
+            {/* <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList />
+            <MessageList /> */}
           </div>
         </div>
 
