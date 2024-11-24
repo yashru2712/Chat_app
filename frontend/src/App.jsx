@@ -3,12 +3,16 @@ import { Routes, Route } from "react-router-dom";
 const Signup = lazy(() => import("./Pages/Signup"));
 const Login = lazy(() => import("./Pages/Login"));
 const PageNotFound = lazy(() => import("./Components/PageNotFound"));
+const Home = lazy(() => import("./Pages/Home"));
+
+// bg-[url('src/assets/background.jpg')]
 
 const App = () => {
   return (
-    <div className="w-screen h-screen bg-[url('src/assets/background.jpg')] bg-cover bg-center">
+    <div className="w-screen h-screen  bg-cover bg-center">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
