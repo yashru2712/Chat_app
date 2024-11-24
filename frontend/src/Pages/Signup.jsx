@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Input from "../Components/Input";
 import { Mail, Lock, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import Login from "./Login";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="h-screen w-screen flex justify-center items-center">
@@ -17,7 +18,7 @@ const Signup = () => {
         <h1 className="text-4xl font-semibold text-white">Create Account</h1>
         <form
           className="flex flex-col justify-center items-center gap-8"
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
         >
           <Input
             icon={User}
@@ -58,7 +59,7 @@ const Signup = () => {
             to={"/login"}
             className="text-[#07a2ad] font-semibold hover:underline"
           >
-            <Login />
+            Login
           </Link>
         </div>
       </div>
